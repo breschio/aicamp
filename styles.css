@@ -171,6 +171,8 @@ body {
 /* Build Section */
 .build-section {
     padding: 40px 0;
+    background: #2d3748;
+    border-radius: 9px;
 }
 
 .tab-container {
@@ -262,9 +264,6 @@ body {
 /* Event Details Section */
 .event-details {
     padding: 40px 0;
-    background: #2d3748;
-    width: 100%;
-    border-radius: 9px;
 }
 
 .details-content {
