@@ -90,7 +90,7 @@ body {
     font-family: 'Press Start 2P', cursive;
     font-size: 5rem;
     font-weight: normal;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     color: #ffd700;
     text-shadow: 
         3px 3px 0px #ff6b35,
@@ -99,6 +99,16 @@ body {
         12px 12px 0px rgba(255, 107, 53, 0.5);
     letter-spacing: 0.1em;
     line-height: 1.2;
+}
+
+.age-range {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    color: #a0aec0;
+    text-align: center;
+    margin: 0 0 25px 0;
+    font-weight: 400;
+    line-height: 1.4;
 }
 
 .hero-description {
@@ -627,6 +637,11 @@ footer {
         font-size: 1.4rem;
     }
     
+    .age-range {
+        font-size: 0.8rem;
+        margin: 0 0 20px 0;
+    }
+    
     .learn-more-btn {
         font-size: 1.1rem;
         padding: 16px 25px;
@@ -649,6 +664,11 @@ footer {
     
     .hero-description p {
         font-size: 1.2rem;
+    }
+    
+    .age-range {
+        font-size: 0.8rem;
+        margin: 0 0 20px 0;
     }
     
     .learn-more-btn {
@@ -739,6 +759,11 @@ footer {
 @media (max-width: 480px) {
     .event-title {
         font-size: 2rem;
+    }
+    
+    .age-range {
+        font-size: 0.75rem;
+        margin: 0 0 15px 0;
     }
     
     .hero-character-img {
