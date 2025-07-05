@@ -181,7 +181,7 @@ body {
 .tab-buttons {
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-top: 30px;
     border: 2px solid #ffd700;
     border-radius: 8px;
     overflow: hidden;
@@ -661,6 +661,7 @@ footer {
     
     .tab-buttons {
         max-width: 100%;
+        margin-top: 20px;
     }
 }
 
@@ -759,7 +760,7 @@ footer {
     
     .tab-buttons {
         max-width: 100%;
-        margin-bottom: 20px;
+        margin-top: 20px;
     }
     
     .tab-btn {
