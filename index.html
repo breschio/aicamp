@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Camp - Join the Adventure!</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <div class="desktop-layout">
+            <!-- Left Column - Hero Content -->
+            <div class="left-column">
+                <section class="hero">
+                    <div class="hero-content">
+                        <div class="hero-character">
+                            <img src="ai-camp-hero.png" alt="AI Camp Hero Character" class="hero-character-img">
+                        </div>
+                        <h1 class="event-title">AI CAMP</h1>
+                        <div class="hero-description">
+                            <p>Learn how to build games and websites with AI. No experience needed, just bring your imagination!</p>
+                        </div>
+                        <div class="hero-cta">
+                            <button class="learn-more-btn" id="signup-cta">Sign up</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column - Details, Form, About -->
+            <div class="right-column">
+                <!-- What we'll build Section -->
+                <section class="build-section">
+                    <div class="container">
+                        <h2 class="section-title">What we'll build</h2>
+                        <div class="tab-container">
+                            <div class="tab-buttons">
+                                <button class="tab-btn active" data-tab="web-game">Game</button>
+                                <button class="tab-btn" data-tab="website">Website</button>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-panel active" id="web-game">
+                                    <p>Create an interactive web game using AI tools to generate characters, storylines, and game mechanics. Learn how to use AI to design sprites, write dialogue, and even code game logic!</p>
+                                </div>
+                                <div class="tab-panel" id="website">
+                                    <p>Build a complete website using AI-powered design tools and code generators. Discover how AI can help create layouts, write content, generate images, and even optimize your site for search engines.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Event Details Section -->
+                <section class="event-details">
+                    <div class="container">
+                        <h2 class="section-title">Details</h2>
+                        <div class="details-content">
+                            <div class="detail-item">
+                                <img src="calendar.png" alt="Calendar" class="detail-icon">
+                                <span class="detail-text">Saturday, July 12th</span>
+                            </div>
+                            <div class="detail-item">
+                                <img src="house.png" alt="Location" class="detail-icon">
+                                <span class="detail-text">Plover Hill Studios</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- About the Organizer Section -->
+                <section class="organizer">
+                    <div class="container">
+                        <div class="organizer-content">
+                            <div class="organizer-header">
+                                <div class="organizer-image">
+                                    <img src="terrence-2.png" alt="Terrence Breschi" class="mentor-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="avatar-placeholder" style="display: none;">👨‍💻</div>
+                                </div>
+                                <div class="organizer-title-section">
+                                    <h2 class="section-title">Camp Leader</h2>
+                                    <h3>Terrence Breschi</h3>
+                                </div>
+                            </div>
+                            <div class="organizer-info">
+                                <p class="organizer-bio">
+                                    Hey! I'm a Product Designer and AI enthusiast who has been designing and coding for over 20+ years. I've worked at Meta, GofundMe, and Yahoo!
+                                </p>
+                                <p class="organizer-bio">
+                                    I believe building with AI are like learning a superpower - once you know it, you can create anything you imagine! It's also a great skill to have in your back pocket.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Sign-Up Form Section -->
+                <section class="signup-form" id="signup-section">
+                    <div class="container">
+                        <h2 class="section-title">Sign up</h2>
+                        <form id="registration-form">
+                            <div class="form-group">
+                                <label for="kid-name" class="form-label">Kid's Name:</label>
+                                <input type="text" id="kid-name" name="kid-name" placeholder="e.g. Pixel Pete" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="kid-age" class="form-label">Kid's Age:</label>
+                                <input type="number" id="kid-age" name="kid-age" min="8" max="16" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="time-selection" class="form-label">Select a Time:</label>
+                                <div class="time-buttons">
+                                    <button type="button" class="time-btn" data-value="morning">Morning Session<br/>9 to 11 a.m.</button>
+                                    <button type="button" class="time-btn" data-value="afternoon">Afternoon Session<br/>1 to 3 p.m.</button>
+                                </div>
+                                <input type="hidden" id="time-selection" name="time-selection" required>
+                            </div>
+
+                            <div class="form-section hidden" id="parent-guardian-section">
+                                <h3 class="subsection-title">Parent/Guardian Info</h3>
+                                <div class="form-group">
+                                    <label for="parent-name" class="form-label">Parent/Guardian Name:</label>
+                                    <input type="text" id="parent-name" name="parent-name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="parent-email" class="form-label">Email:</label>
+                                    <input type="email" id="parent-email" name="parent-email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="parent-phone" class="form-label">Phone Number:</label>
+                                    <input type="tel" id="parent-phone" name="parent-phone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="special-needs" class="form-label">Any Special Needs or Allergies:</label>
+                                    <textarea id="special-needs" name="special-needs" rows="3" placeholder="Let us know if there's anything we should be aware of..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Does your kid have access to a laptop or phone?</label>
+                                    <div class="radio-group">
+                                        <label class="radio-option">
+                                            <input type="radio" name="device-access" value="laptop" required>
+                                            <span class="radio-text">Laptop</span>
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="device-access" value="phone" required>
+                                            <span class="radio-text">Phone</span>
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="device-access" value="both" required>
+                                            <span class="radio-text">Both</span>
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="device-access" value="neither" required>
+                                            <span class="radio-text">Neither</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="submit-btn">REGISTER NOW!</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AI Camp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
