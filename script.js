@@ -225,10 +225,24 @@ document.addEventListener('DOMContentLoaded', function() {
             submission_date: new Date().toLocaleString()
         };
         
-        // Send email using EmailJS
+        // Send notification email to organizer
         emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
             .then(function(response) {
-                console.log('SUCCESS!', response.status, response.text);
+                console.log('Notification email sent successfully!', response.status, response.text);
+                
+                // Send confirmation email to parent
+                const parentTemplateParams = {
+                    to_email: templateParams.parent_email,
+                    to_name: templateParams.parent_name,
+                    kid_name: templateParams.kid_name,
+                    time_selection: templateParams.time_selection,
+                    submission_date: templateParams.submission_date
+                };
+                
+                return emailjs.send('YOUR_SERVICE_ID', 'YOUR_CONFIRMATION_TEMPLATE_ID', parentTemplateParams);
+            })
+            .then(function(response) {
+                console.log('Confirmation email sent to parent!', response.status, response.text);
                 showSuccessMessage();
                 
                 // Reset form after successful submission
@@ -245,7 +259,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 3000);
             })
             .catch(function(error) {
-                console.error('FAILED...', error);
+                console.error('EMAIL FAILED...', error);
                 showErrorMessage('Failed to send registration. Please try again or contact us directly.');
                 
                 // Reset submit button
