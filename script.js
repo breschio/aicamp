@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize EmailJS
+    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+    
     const form = document.getElementById('registration-form');
     const submitBtn = document.querySelector('.submit-btn');
     const timeButtons = document.querySelectorAll('.time-btn');
@@ -145,16 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // If all validations pass
         if (isValid) {
-            showSuccessMessage();
-            // Here you would typically submit the form data to a server
-            console.log('Form submitted successfully!');
-            
-            // Reset form after successful submission
-            setTimeout(() => {
-                form.reset();
-                timeButtons.forEach(btn => btn.classList.remove('selected'));
-                hideSuccessMessage();
-            }, 3000);
+            submitFormWithEmailJS();
         }
     });
     
@@ -208,6 +202,69 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // EmailJS submission function
+    function submitFormWithEmailJS() {
+        // Show loading state
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        // Get the selected device access value
+        const deviceAccessRadios = document.querySelectorAll('input[name="device-access"]');
+        const selectedDeviceAccess = Array.from(deviceAccessRadios).find(radio => radio.checked);
+        
+        // Prepare template parameters for EmailJS
+        const templateParams = {
+            kid_name: document.getElementById('kid-name').value,
+            kid_age: document.getElementById('kid-age').value,
+            time_selection: getTimeSelectionText(),
+            parent_name: document.getElementById('parent-name').value,
+            parent_email: document.getElementById('parent-email').value,
+            parent_phone: document.getElementById('parent-phone').value,
+            special_needs: document.getElementById('special-needs').value || 'None specified',
+            device_access: selectedDeviceAccess ? selectedDeviceAccess.value : 'Not specified',
+            submission_date: new Date().toLocaleString()
+        };
+        
+        // Send email using EmailJS
+        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                showSuccessMessage();
+                
+                // Reset form after successful submission
+                setTimeout(() => {
+                    form.reset();
+                    timeButtons.forEach(btn => btn.classList.remove('selected'));
+                    parentGuardianSection.classList.add('hidden');
+                    parentGuardianSection.classList.remove('show');
+                    hideSuccessMessage();
+                    
+                    // Reset submit button
+                    submitBtn.textContent = 'Submit Registration';
+                    submitBtn.disabled = false;
+                }, 3000);
+            })
+            .catch(function(error) {
+                console.error('FAILED...', error);
+                showErrorMessage('Failed to send registration. Please try again or contact us directly.');
+                
+                // Reset submit button
+                submitBtn.textContent = 'Submit Registration';
+                submitBtn.disabled = false;
+            });
+    }
+    
+    // Helper function to get readable time selection text
+    function getTimeSelectionText() {
+        const timeValue = timeSelectionInput.value;
+        if (timeValue === 'morning') {
+            return 'Morning Session (9 to 11 a.m.)';
+        } else if (timeValue === 'afternoon') {
+            return 'Afternoon Session (1 to 3 p.m.)';
+        }
+        return timeValue;
+    }
+
     // Helper functions
     function showError(field, message) {
         field.classList.add('error');
@@ -263,6 +320,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    function showErrorMessage(message) {
+        let errorElement = form.querySelector('.error-message-global');
+        if (!errorElement) {
+            errorElement = document.createElement('div');
+            errorElement.className = 'error-message-global';
+            errorElement.style.cssText = `
+                background-color: #fee;
+                border: 1px solid #fcc;
+                color: #c33;
+                padding: 12px;
+                border-radius: 4px;
+                margin-bottom: 15px;
+                font-size: 14px;
+            `;
+            form.insertBefore(errorElement, form.firstChild);
+        }
+        
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+        
+        // Hide error message after 5 seconds
+        setTimeout(() => {
+            errorElement.style.display = 'none';
+        }, 5000);
+    }
+    
     // Smooth scrolling for form focus
     function scrollToElement(element) {
         element.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -283,16 +366,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Button loading effect
-    submitBtn.addEventListener('click', function(e) {
-        if (form.checkValidity()) {
-            this.textContent = 'Submitting...';
-            this.disabled = true;
-            
-            setTimeout(() => {
-                this.textContent = 'Submit Registration';
-                this.disabled = false;
-            }, 2000);
-        }
-    });
+    // Note: Button loading effect is now handled in submitFormWithEmailJS function
 });
